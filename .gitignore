@@ -1,0 +1,23 @@
+# Build outputs
+bin/
+obj/
+publish/
+publish2/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Debug symbols
+*.pdb
+
+# Executables
+*.exe
+*.dll
+
+# OS
+.DS_Store
+Thumbs.db

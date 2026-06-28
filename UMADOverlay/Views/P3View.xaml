@@ -1,0 +1,473 @@
+<UserControl x:Class="UMADOverlay.Views.P3View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cv="clr-namespace:UMADOverlay.Converters">
+
+    <UserControl.Resources>
+        <cv:BoolToColorConverter x:Key="BoolColor"/>
+
+        <SolidColorBrush x:Key="YellowBrush"  Color="#FFCC00"/>
+        <SolidColorBrush x:Key="BlueBrush"     Color="#4DADFF"/>
+        <SolidColorBrush x:Key="BorderBrush"   Color="#444444"/>
+        <SolidColorBrush x:Key="TextSubBrush"  Color="#666666"/>
+        <SolidColorBrush x:Key="BtnDefaultBg"  Color="#282828"/>
+        <SolidColorBrush x:Key="BtnActiveBg"   Color="#4DADFF"/>
+        <SolidColorBrush x:Key="AnsBgBrush"    Color="#1c1c1c"/>
+        <SolidColorBrush x:Key="DivBrush"      Color="#333333"/>
+
+        <!-- Base P3 button style with active DataTrigger baked in via tag -->
+        <Style x:Key="P3Btn" TargetType="Button">
+            <Setter Property="Focusable"        Value="False"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Cursor"           Value="Hand"/>
+            <Setter Property="Height"           Value="44"/>
+            <Setter Property="FontSize"         Value="13"/>
+            <Setter Property="FontWeight"       Value="Bold"/>
+            <Setter Property="Foreground"       Value="White"/>
+            <Setter Property="Background"       Value="{StaticResource BtnDefaultBg}"/>
+            <Setter Property="BorderBrush"      Value="{StaticResource BorderBrush}"/>
+            <Setter Property="BorderThickness"  Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- One named style per button — DataTrigger binds to its specific BtnX.IsActive -->
+        <Style x:Key="BtnA" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnA.IsActive}" Value="True">
+                <Setter Property="Background" Value="#1A4A7A"/>
+                <Setter Property="Foreground" Value="White"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+        <Style x:Key="BtnB" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnB.IsActive}" Value="True">
+                <Setter Property="Background" Value="#5A2525"/>
+                <Setter Property="Foreground" Value="White"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+        <Style x:Key="BtnC" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnC.IsActive}" Value="True">
+                <Setter Property="Background" Value="{StaticResource BtnActiveBg}"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+        <Style x:Key="BtnD" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnD.IsActive}" Value="True">
+                <Setter Property="Background" Value="{StaticResource BtnActiveBg}"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+        <Style x:Key="BtnE" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnE.IsActive}" Value="True">
+                <Setter Property="Background" Value="{StaticResource BtnActiveBg}"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+        <Style x:Key="BtnF" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnF.IsActive}" Value="True">
+                <Setter Property="Background" Value="#1A4A7A"/>
+                <Setter Property="Foreground" Value="White"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+        <Style x:Key="BtnG" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnG.IsActive}" Value="True">
+                <Setter Property="Background" Value="#5A2525"/>
+                <Setter Property="Foreground" Value="White"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+        <Style x:Key="BtnH" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnH.IsActive}" Value="True">
+                <Setter Property="Background" Value="#5A2525"/>
+                <Setter Property="Foreground" Value="White"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+        <Style x:Key="BtnI" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnI.IsActive}" Value="True">
+                <Setter Property="Background" Value="#1A4A7A"/>
+                <Setter Property="Foreground" Value="White"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+        <Style x:Key="BtnJ" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnJ.IsActive}" Value="True">
+                <Setter Property="Background" Value="#1A4A7A"/>
+                <Setter Property="Foreground" Value="White"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+        <Style x:Key="BtnK" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnK.IsActive}" Value="True">
+                <Setter Property="Background" Value="#5A2525"/>
+                <Setter Property="Foreground" Value="White"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+        <Style x:Key="BtnL" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnL.IsActive}" Value="True">
+                <Setter Property="Background" Value="{StaticResource BtnActiveBg}"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+        <Style x:Key="BtnM" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnM.IsActive}" Value="True">
+                <Setter Property="Background" Value="#1A4A7A"/>
+                <Setter Property="Foreground" Value="White"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+        <Style x:Key="BtnN" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnN.IsActive}" Value="True">
+                <Setter Property="Background" Value="#5A2525"/>
+                <Setter Property="Foreground" Value="White"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+        <Style x:Key="BtnO" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnO.IsActive}" Value="True">
+                <Setter Property="Background" Value="#1A4A7A"/>
+                <Setter Property="Foreground" Value="White"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+        <Style x:Key="BtnP" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnP.IsActive}" Value="True">
+                <Setter Property="Background" Value="#5A2525"/>
+                <Setter Property="Foreground" Value="White"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+        <Style x:Key="BtnQ" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnQ.IsActive}" Value="True">
+                <Setter Property="Background" Value="#1A4A7A"/>
+                <Setter Property="Foreground" Value="White"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+        <Style x:Key="BtnR" TargetType="Button" BasedOn="{StaticResource P3Btn}">
+            <Style.Triggers><DataTrigger Binding="{Binding BtnR.IsActive}" Value="True">
+                <Setter Property="Background" Value="#5A2525"/>
+                <Setter Property="Foreground" Value="White"/>
+            </DataTrigger></Style.Triggers>
+        </Style>
+
+        <!-- Section title -->
+        <Style x:Key="SecTitle" TargetType="TextBlock">
+            <Setter Property="FontSize"          Value="9"/>
+            <Setter Property="FontWeight"        Value="Bold"/>
+            <Setter Property="Foreground"        Value="#5BC8F5"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Margin"            Value="4,0,0,1"/>
+        </Style>
+
+        <!-- Answer box -->
+        <Style x:Key="AnsBox" TargetType="Border">
+            <Setter Property="Background"      Value="{StaticResource AnsBgBrush}"/>
+            <Setter Property="BorderBrush"     Value="{StaticResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius"    Value="3"/>
+            <Setter Property="Height"          Value="46"/>
+            <Setter Property="Margin"          Value="4,3,0,3"/>
+        </Style>
+
+        <!-- Answer text: yellow when has value, dim when empty -->
+        <Style x:Key="AnsTxt" TargetType="TextBlock">
+            <Setter Property="FontSize"           Value="15"/>
+            <Setter Property="FontWeight"         Value="Bold"/>
+            <Setter Property="Foreground"         Value="#3a3a3a"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment"   Value="Center"/>
+        </Style>
+
+        <Style x:Key="AnsNum" TargetType="TextBlock">
+            <Setter Property="FontSize"            Value="10"/>
+            <Setter Property="FontWeight"          Value="Bold"/>
+            <Setter Property="Foreground"          Value="{StaticResource TextSubBrush}"/>
+            <Setter Property="VerticalAlignment"   Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+
+        <Style x:Key="AnsTxt1" TargetType="TextBlock" BasedOn="{StaticResource AnsTxt}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding HasAns1}" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource YellowBrush}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="AnsTxt2" TargetType="TextBlock" BasedOn="{StaticResource AnsTxt}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding HasAns2}" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource YellowBrush}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="AnsTxt3" TargetType="TextBlock" BasedOn="{StaticResource AnsTxt}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding HasAns3}" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource YellowBrush}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="AnsTxt4" TargetType="TextBlock" BasedOn="{StaticResource AnsTxt}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding HasAns4}" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource YellowBrush}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="AnsTxt5" TargetType="TextBlock" BasedOn="{StaticResource AnsTxt}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding HasAns5}" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource YellowBrush}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="AnsTxt6" TargetType="TextBlock" BasedOn="{StaticResource AnsTxt}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding HasAns6}" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource YellowBrush}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="AnsTxt7" TargetType="TextBlock" BasedOn="{StaticResource AnsTxt}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding HasAns7}" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource YellowBrush}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="AnsTxt8" TargetType="TextBlock" BasedOn="{StaticResource AnsTxt}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding HasAns8}" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource YellowBrush}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid x:Name="RootGrid" Margin="6,4,6,4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="8"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- ── LEFT: Answer column ──── -->
+        <Grid x:Name="AnsColumn" Grid.Column="0" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="14"/> <!-- 炸彈 -->
+                <RowDefinition Height="*"/>  <!-- 1. -->
+                <RowDefinition Height="14"/> <!-- 早debuff -->
+                <RowDefinition Height="*"/>  <!-- 2. -->
+                <RowDefinition Height="*"/>  <!-- 3. -->
+                <RowDefinition Height="*"/>  <!-- 4. -->
+                <RowDefinition Height="2"/>  <!-- div -->
+                <RowDefinition Height="14"/> <!-- 晚debuff -->
+                <RowDefinition Height="*"/>  <!-- 5. -->
+                <RowDefinition Height="*"/>  <!-- 6. -->
+                <RowDefinition Height="*"/>  <!-- 7. -->
+                <RowDefinition Height="14"/> <!-- 魔法放出 -->
+                <RowDefinition Height="*"/>  <!-- 8. -->
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"  Text="{Binding SecBomb}"  Style="{StaticResource SecTitle}"/>
+            <Grid Grid.Row="1"><Grid.ColumnDefinitions><ColumnDefinition Width="20"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="1." Style="{StaticResource AnsNum}"/>
+                <Border Grid.Column="1" Style="{StaticResource AnsBox}" Height="Auto" Margin="4,2,0,2"><TextBlock Style="{StaticResource AnsTxt1}" Text="{Binding Ans1}"/></Border></Grid>
+            <TextBlock Grid.Row="2"  Text="{Binding SecEarly}" Style="{StaticResource SecTitle}"/>
+            <Grid Grid.Row="3"><Grid.ColumnDefinitions><ColumnDefinition Width="20"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="2." Style="{StaticResource AnsNum}"/>
+                <Border Grid.Column="1" Style="{StaticResource AnsBox}" Height="Auto" Margin="4,2,0,2"><TextBlock Style="{StaticResource AnsTxt2}" Text="{Binding Ans2}"/></Border></Grid>
+            <Grid Grid.Row="4"><Grid.ColumnDefinitions><ColumnDefinition Width="20"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="3." Style="{StaticResource AnsNum}"/>
+                <Border Grid.Column="1" Style="{StaticResource AnsBox}" Height="Auto" Margin="4,2,0,2"><TextBlock Style="{StaticResource AnsTxt3}" Text="{Binding Ans3}"/></Border></Grid>
+            <Grid Grid.Row="5"><Grid.ColumnDefinitions><ColumnDefinition Width="20"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding Num4Label}" Style="{StaticResource AnsNum}" Foreground="#FF6B35"/>
+                <Border Grid.Column="1" Style="{StaticResource AnsBox}" Height="Auto" Margin="4,2,0,2"><TextBlock Style="{StaticResource AnsTxt4}" Text="{Binding Ans4}"/></Border></Grid>
+            <Rectangle Grid.Row="6" Fill="{StaticResource DivBrush}" Margin="4,0"/>
+            <TextBlock Grid.Row="7"  Text="{Binding SecLate}"  Style="{StaticResource SecTitle}"/>
+            <Grid Grid.Row="8"><Grid.ColumnDefinitions><ColumnDefinition Width="20"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="5." Style="{StaticResource AnsNum}"/>
+                <Border Grid.Column="1" Style="{StaticResource AnsBox}" Height="Auto" Margin="4,2,0,2"><TextBlock Style="{StaticResource AnsTxt5}" Text="{Binding Ans5}"/></Border></Grid>
+            <Grid Grid.Row="9"><Grid.ColumnDefinitions><ColumnDefinition Width="20"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="6." Style="{StaticResource AnsNum}"/>
+                <Border Grid.Column="1" Style="{StaticResource AnsBox}" Height="Auto" Margin="4,2,0,2"><TextBlock Style="{StaticResource AnsTxt6}" Text="{Binding Ans6}"/></Border></Grid>
+            <Grid Grid.Row="10"><Grid.ColumnDefinitions><ColumnDefinition Width="20"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding Num7Label}" Style="{StaticResource AnsNum}" Foreground="#4DADFF"/>
+                <Border Grid.Column="1" Style="{StaticResource AnsBox}" Height="Auto" Margin="4,2,0,2"><TextBlock Style="{StaticResource AnsTxt7}" Text="{Binding Ans7}"/></Border></Grid>
+            <TextBlock Grid.Row="11" Text="{Binding SecMagic}" Style="{StaticResource SecTitle}"/>
+            <Grid Grid.Row="12"><Grid.ColumnDefinitions><ColumnDefinition Width="20"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="8." Style="{StaticResource AnsNum}"/>
+                <Border Grid.Column="1" Style="{StaticResource AnsBox}" Height="Auto" Margin="4,2,0,2"><TextBlock Style="{StaticResource AnsTxt8}" Text="{Binding Ans8}"/></Border></Grid>
+        </Grid>
+
+        <!-- ── RIGHT: Button column ──── -->
+        <Grid x:Name="BtnColumn" Grid.Column="2" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="14"/> <!-- GC1 title -->
+                <RowDefinition Height="*"/>  <!-- AB -->
+                <RowDefinition Height="*"/>  <!-- CD -->
+                <RowDefinition Height="*"/>  <!-- E -->
+                <RowDefinition Height="2"/>  <!-- div -->
+                <RowDefinition Height="14"/> <!-- 水火1 title -->
+                <RowDefinition Height="*"/>  <!-- FG -->
+                <RowDefinition Height="*"/>  <!-- HI -->
+                <RowDefinition Height="2"/>  <!-- div -->
+                <RowDefinition Height="14"/> <!-- GC2 title -->
+                <RowDefinition Height="*"/>  <!-- JK -->
+                <RowDefinition Height="*"/>  <!-- L -->
+                <RowDefinition Height="2"/>  <!-- div -->
+                <RowDefinition Height="14"/> <!-- 水火2 title -->
+                <RowDefinition Height="*"/>  <!-- MN -->
+                <RowDefinition Height="2"/>  <!-- div -->
+                <RowDefinition Height="14"/> <!-- 雷直線 title -->
+                <RowDefinition Height="*"/>  <!-- OP -->
+                <RowDefinition Height="14"/> <!-- 冰扇形 title -->
+                <RowDefinition Height="*"/>  <!-- QR -->
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"  Text="{Binding SecGC1}"        Style="{StaticResource SecTitle}" HorizontalAlignment="Center" Margin="0,0,0,1"/>
+
+            <!-- AB -->
+            <UniformGrid Grid.Row="1" Rows="1">
+                <Button Style="{StaticResource BtnA}" Margin="0,3,3,3"
+                        Command="{Binding CmdClick}" CommandParameter="A">
+                    <Button.Content>
+                        <Ellipse Width="30" Height="30" Fill="#4DADFF"/>
+                    </Button.Content>
+                </Button>
+                <Button Style="{StaticResource BtnB}" Margin="3,3,0,3"
+                        Command="{Binding CmdClick}" CommandParameter="B">
+                    <Button.Content>
+                        <TextBlock Text="?" FontSize="26" FontWeight="Bold" Foreground="#FF4D4D"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+            </UniformGrid>
+            <!-- CD -->
+            <UniformGrid Grid.Row="2" Rows="1">
+                <Button Content="{Binding BtnCLabel}" Style="{StaticResource BtnC}" Margin="0,3,3,3"
+                        Command="{Binding CmdClick}" CommandParameter="C"/>
+                <Button Content="{Binding BtnDLabel}" Style="{StaticResource BtnD}" Margin="3,3,0,3"
+                        Command="{Binding CmdClick}" CommandParameter="D"/>
+            </UniformGrid>
+            <!-- E -->
+            <UniformGrid Grid.Row="3" Rows="1" Columns="2">
+                <Button Style="{StaticResource BtnE}" Margin="0,3,3,3"
+                        Command="{Binding CmdClick}" CommandParameter="E">
+                    <Button.Content><Image Source="pack://application:,,,/Assets/btn_el.webp" Stretch="Uniform" Margin="4"/></Button.Content>
+                </Button>
+                <Border/>
+            </UniformGrid>
+            <Rectangle Grid.Row="4" Fill="{StaticResource DivBrush}" Margin="0,0"/>
+            <TextBlock Grid.Row="5" Text="{Binding SecWaterFire1}" Style="{StaticResource SecTitle}" HorizontalAlignment="Center" Margin="0,0,0,1"/>
+            <!-- FG -->
+            <UniformGrid Grid.Row="6" Rows="1">
+                <Button Style="{StaticResource BtnF}" Margin="0,3,3,3"
+                        Command="{Binding CmdClick}" CommandParameter="F">
+                    <Button.Content>
+                        <Ellipse Width="30" Height="30" Fill="#4DADFF"/>
+                    </Button.Content>
+                </Button>
+                <Button Style="{StaticResource BtnG}" Margin="3,3,0,3"
+                        Command="{Binding CmdClick}" CommandParameter="G">
+                    <Button.Content>
+                        <TextBlock Text="?" FontSize="26" FontWeight="Bold" Foreground="#FF4D4D"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+            </UniformGrid>
+            <!-- HI — I(水) 左, H(火) 右 -->
+            <UniformGrid Grid.Row="7" Rows="1">
+                <Button Style="{StaticResource BtnI}" Margin="0,3,3,3"
+                        Command="{Binding CmdClick}" CommandParameter="I">
+                    <Button.Content><Image Source="pack://application:,,,/Assets/btn_i.webp" Stretch="Uniform" Margin="4"/></Button.Content>
+                </Button>
+                <Button Style="{StaticResource BtnH}" Margin="3,3,0,3"
+                        Command="{Binding CmdClick}" CommandParameter="H">
+                    <Button.Content><Image Source="pack://application:,,,/Assets/btn_h.webp" Stretch="Uniform" Margin="4"/></Button.Content>
+                </Button>
+            </UniformGrid>
+            <Rectangle Grid.Row="8" Fill="{StaticResource DivBrush}" Margin="0,0"/>
+            <TextBlock Grid.Row="9" Text="{Binding SecGC2}" Style="{StaticResource SecTitle}" HorizontalAlignment="Center" Margin="0,0,0,1"/>
+            <!-- JK -->
+            <UniformGrid Grid.Row="10" Rows="1">
+                <Button Style="{StaticResource BtnJ}" Margin="0,3,3,3"
+                        Command="{Binding CmdClick}" CommandParameter="J">
+                    <Button.Content>
+                        <Ellipse Width="30" Height="30" Fill="#4DADFF"/>
+                    </Button.Content>
+                </Button>
+                <Button Style="{StaticResource BtnK}" Margin="3,3,0,3"
+                        Command="{Binding CmdClick}" CommandParameter="K">
+                    <Button.Content>
+                        <TextBlock Text="?" FontSize="26" FontWeight="Bold" Foreground="#FF4D4D"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+            </UniformGrid>
+            <!-- L -->
+            <UniformGrid Grid.Row="11" Rows="1" Columns="2">
+                <Button Style="{StaticResource BtnL}" Margin="0,3,3,3"
+                        Command="{Binding CmdClick}" CommandParameter="L">
+                    <Button.Content><Image Source="pack://application:,,,/Assets/btn_el.webp" Stretch="Uniform" Margin="4"/></Button.Content>
+                </Button>
+                <Border/>
+            </UniformGrid>
+            <Rectangle Grid.Row="12" Fill="{StaticResource DivBrush}" Margin="0,0"/>
+            <TextBlock Grid.Row="13" Text="{Binding SecWaterFire2}" Style="{StaticResource SecTitle}" HorizontalAlignment="Center" Margin="0,0,0,1"/>
+            <!-- MN -->
+            <UniformGrid Grid.Row="14" Rows="1">
+                <Button Style="{StaticResource BtnM}" Margin="0,3,3,3"
+                        Command="{Binding CmdClick}" CommandParameter="M">
+                    <Button.Content>
+                        <Ellipse Width="30" Height="30" Fill="#4DADFF"/>
+                    </Button.Content>
+                </Button>
+                <Button Style="{StaticResource BtnN}" Margin="3,3,0,3"
+                        Command="{Binding CmdClick}" CommandParameter="N">
+                    <Button.Content>
+                        <TextBlock Text="?" FontSize="26" FontWeight="Bold" Foreground="#FF4D4D"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+            </UniformGrid>
+            <Rectangle Grid.Row="15" Fill="{StaticResource DivBrush}" Margin="0,0"/>
+            <TextBlock Grid.Row="16" Text="{Binding SecThunder}" Style="{StaticResource SecTitle}" HorizontalAlignment="Center" Margin="0,0,0,1"/>
+            <!-- OP -->
+            <UniformGrid Grid.Row="17" Rows="1">
+                <Button Style="{StaticResource BtnO}" Margin="0,3,3,3"
+                        Command="{Binding CmdClick}" CommandParameter="O">
+                    <Button.Content>
+                        <Ellipse Width="30" Height="30" Fill="#4DADFF"/>
+                    </Button.Content>
+                </Button>
+                <Button Style="{StaticResource BtnP}" Margin="3,3,0,3"
+                        Command="{Binding CmdClick}" CommandParameter="P">
+                    <Button.Content>
+                        <TextBlock Text="?" FontSize="26" FontWeight="Bold" Foreground="#FF4D4D"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+            </UniformGrid>
+            <TextBlock Grid.Row="18" Text="{Binding SecIce}" Style="{StaticResource SecTitle}" HorizontalAlignment="Center" Margin="0,0,0,1"/>
+            <!-- QR -->
+            <UniformGrid Grid.Row="19" Rows="1">
+                <Button Style="{StaticResource BtnQ}" Margin="0,3,3,3"
+                        Command="{Binding CmdClick}" CommandParameter="Q">
+                    <Button.Content>
+                        <Ellipse Width="30" Height="30" Fill="#4DADFF"/>
+                    </Button.Content>
+                </Button>
+                <Button Style="{StaticResource BtnR}" Margin="3,3,0,3"
+                        Command="{Binding CmdClick}" CommandParameter="R">
+                    <Button.Content>
+                        <TextBlock Text="?" FontSize="26" FontWeight="Bold" Foreground="#FF4D4D"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+            </UniformGrid>
+        </Grid>
+    </Grid>
+</UserControl>

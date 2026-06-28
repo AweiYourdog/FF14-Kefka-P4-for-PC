@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>UMADOverlay</AssemblyName>
+    <RootNamespace>UMADOverlay</RootNamespace>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Resource Include="Assets\btn_el.webp"/>
+    <Resource Include="Assets\btn_h.webp"/>
+    <Resource Include="Assets\btn_i.webp"/>
+  </ItemGroup>
+</Project>

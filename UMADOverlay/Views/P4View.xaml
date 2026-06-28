@@ -1,0 +1,151 @@
+<UserControl x:Class="UMADOverlay.Views.P4View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:UMADOverlay.ViewModels">
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="YellowBrush"     Color="#FFCC00"/>
+        <SolidColorBrush x:Key="BlueBrush"        Color="#4DADFF"/>
+        <SolidColorBrush x:Key="RedBrush"         Color="#FF4D4D"/>
+        <SolidColorBrush x:Key="RowDefaultBrush"  Color="#2a2a2a"/>
+        <SolidColorBrush x:Key="RowShinBrush"     Color="#1A3855"/>
+        <SolidColorBrush x:Key="RowGiBrush"       Color="#501A1A"/>
+        <SolidColorBrush x:Key="BorderBrush"      Color="#444444"/>
+        <SolidColorBrush x:Key="TextSubBrush"     Color="#888888"/>
+
+        <!-- Choice button base -->
+        <Style x:Key="ChoiceBtn" TargetType="Button">
+            <Setter Property="Focusable"        Value="False"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Cursor"           Value="Hand"/>
+            <Setter Property="Width"            Value="64"/>
+            <Setter Property="Height"           Value="34"/>
+            <Setter Property="FontSize"         Value="18"/>
+            <Setter Property="BorderThickness"  Value="1"/>
+            <Setter Property="BorderBrush"      Value="{StaticResource BorderBrush}"/>
+            <Setter Property="Background"       Value="#333333"/>
+            <Setter Property="Foreground"       Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Section header template -->
+        <DataTemplate x:Key="SectionHeaderTemplate" DataType="{x:Type vm:SectionViewModel}">
+            <Border Margin="0,6,0,2" Padding="8,2">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="3" Fill="{StaticResource YellowBrush}" Margin="0,2,6,2"/>
+                    <TextBlock Text="{Binding Header}"
+                               Foreground="{StaticResource TextSubBrush}"
+                               FontSize="11" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+        <!-- Gimmick row template -->
+        <DataTemplate DataType="{x:Type vm:GimmickRowViewModel}">
+            <Border Margin="4,0,4,3" Height="44" CornerRadius="4"
+                    Padding="0">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="{StaticResource RowDefaultBrush}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsShin}" Value="True">
+                                <Setter Property="Background" Value="{StaticResource RowShinBrush}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsGi}" Value="True">
+                                <Setter Property="Background" Value="{StaticResource RowGiBrush}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="105"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="148"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Label -->
+                    <TextBlock Grid.Column="0" Text="{Binding Label}"
+                               Foreground="White" FontSize="13" FontWeight="Bold"
+                               VerticalAlignment="Center" Margin="10,0,0,0"/>
+
+                    <!-- Answer -->
+                    <TextBlock Grid.Column="1" Text="{Binding Answer}"
+                               FontSize="16" FontWeight="Bold"
+                               HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="{StaticResource YellowBrush}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsShin}" Value="True">
+                                        <Setter Property="Foreground" Value="{StaticResource BlueBrush}"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsGi}" Value="True">
+                                        <Setter Property="Foreground" Value="{StaticResource RedBrush}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <!-- Buttons -->
+                    <StackPanel Grid.Column="2" Orientation="Horizontal"
+                                VerticalAlignment="Center" Margin="4,0,4,0">
+                        <Button Content="🔵" Command="{Binding CmdShin}" Margin="0,0,6,0">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource ChoiceBtn}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsShin}" Value="True">
+                                            <Setter Property="Background" Value="#4DADFF"/>
+                                            <Setter Property="BorderBrush" Value="White"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button Content="❓" Command="{Binding CmdGi}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource ChoiceBtn}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsGi}" Value="True">
+                                            <Setter Property="Background" Value="#FF4D4D"/>
+                                            <Setter Property="BorderBrush" Value="White"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Focusable="False"
+                  Background="Transparent">
+        <ItemsControl ItemsSource="{Binding P4Sections}" Focusable="False">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type vm:SectionViewModel}">
+                    <StackPanel>
+                        <!-- Section header -->
+                        <ContentPresenter Content="{Binding}"
+                                          ContentTemplate="{StaticResource SectionHeaderTemplate}"/>
+                        <!-- Rows -->
+                        <ItemsControl ItemsSource="{Binding Rows}" Focusable="False"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>
+</UserControl>
