@@ -2,7 +2,7 @@
 FF14 絕妖星P4判定輔助工具
 
 ## 使用方式
-1. 下載 Kefka P4.exe
+1. 點擊右側Release下載 Kefka P4.exe
 2. 直接執行，無需安裝任何額外軟體
 3. 建議 FF14 使用「無邊框視窗」模式，讓 overlay 可以顯示在遊戲上方
 4. 右上齒輪內可設定
@@ -39,7 +39,7 @@ This is normal behavior for unsigned applications — the program contains no ma
 FF14 絶妖星乱舞 P4 判定支援ツール
 
 ## 使い方
-1. Kefka P4.exe をダウンロード
+1. 右側のReleaseクリック　Kefka P4.exe をダウンロード
 2. インストール不要。そのまま実行できます
 3. FF14 は「ボーダーレスウィンドウ」モードでの使用を推奨します（オーバーレイをゲーム上に表示できます）
 4. 右上の歯車，設定できます。
